@@ -2,6 +2,7 @@ package onlinecatalog.onlinecatalog.controller;
 
 import onlinecatalog.onlinecatalog.model.Student;
 import onlinecatalog.onlinecatalog.repository.StudentRepository;
+import onlinecatalog.onlinecatalog.service.SchoolGroupService;
 import onlinecatalog.onlinecatalog.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private SchoolGroupService schoolGroupService;
+
     @GetMapping("allstudents")
     public String showAllStudents(Model model) {
 
@@ -26,9 +30,9 @@ public class StudentController {
         return "student/showallstudents";
     }
 
-
     @GetMapping("/addstudent")
     public String addStudent(Model model) {
+        model.addAttribute("schoolgroups", schoolGroupService.findAll());
         model.addAttribute("student", new Student());// initial bind with the form, to say to the webpage
 
         return "student/addstudent";
@@ -37,7 +41,6 @@ public class StudentController {
     @PostMapping("/addstudent")
     public String addStudent(@ModelAttribute Student student) {
 
-//        System.out.println(student);
         studentService.save(student);
 
         return "redirect:/allstudents";

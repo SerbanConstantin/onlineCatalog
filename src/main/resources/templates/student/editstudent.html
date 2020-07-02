@@ -13,6 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
     <title>Edit student</title>
+    <nav th:insert="_menu.html::menu_nav">
+    </nav>
+    <script>
+        $(document).ready(function() {
+            $('select').formSelect();
+        });
+    </script>
 
 </head>
 <body>
@@ -24,6 +31,7 @@
             <hr>
             <div class="row">
                 <div class="input-field col s12">
+                    <input th:field="*{studentId}" type="hidden">
                     <label for="first_name"><b>First Name</b></label>
                     <input th:field="*{firstName}" id="first_name" type="text" placeholder="First Name" required>
                 </div>
@@ -32,6 +40,15 @@
                 <div class="input-field col s12">
                     <label for="last_name"><b>Last Name</b></label>
                     <input th:field="*{lastName}" id="last_name" type="text" placeholder="Last Name" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="school_group" th:field="*{schoolGroup.groupId}">
+                        <option th:each="sc: ${schoolgroups}" th:value="${sc.groupId}"
+                                th:text="${sc.groupName + ' ' + sc.groupYear}"/>
+                    </select>
+                    <label for="school_group"><b>School group</b></label>
                 </div>
             </div>
             <button type="submit">Save</button>

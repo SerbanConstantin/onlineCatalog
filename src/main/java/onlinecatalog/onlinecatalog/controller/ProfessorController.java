@@ -60,8 +60,8 @@ public class ProfessorController {
     @PostMapping("/editprofessor/{id}")
     public String editProfessor(@ModelAttribute Professor professor, @PathVariable Integer id) {
         Professor database_professor = professorService.findById(id); // to be able to update that id, get it from database
-        database_professor.setLastName(professor.getLastName()); // update fields
-        database_professor.setFirstName(professor.getFirstName());
+//        database_professor.setLastName(professor.getLastName()); // update fields
+//        database_professor.setFirstName(professor.getFirstName());
 
         System.out.println(database_professor);
         professorService.save(database_professor); // save it again. SAVE acts as UPDATE

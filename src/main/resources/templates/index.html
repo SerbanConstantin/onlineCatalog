@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -15,10 +14,11 @@
 
     <meta charset="UTF-8">
     <title>Online Catalog</title>
+    <nav th:insert="_menu.html::menu_nav">
+    </nav>
 </head>
 <body>
-<h1>It works</h1>
-<a th:href="@{/allstudents}">Students</a>
-<a th:href="@{/allprofessors}">Professors</a>
+<h1>Online Catalog</h1>
+
 </body>
 </html>

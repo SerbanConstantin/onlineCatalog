@@ -12,43 +12,43 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
-    <title>Professors view</title>
-    <nav th:insert="_menu.html :: menu_nav">
+    <title>School group student view</title>
+
+    <nav th:insert="_menu.html::menu_nav">
     </nav>
 </head>
 <body>
 <div class="container">
-<h1>Professors</h1>
-<a th:href="@{/addprofessor}">
-    <i class="small material-icons">add</i>
-</a>
-
+    <h1>Students</h1>
+    <a th:href="@{/addstudent}">
+        <i class="small material-icons">add</i>
+    </a>
     <table>
         <thead>
         <tr>
             <td>
-                Professor id
+                Student id
             </td>
             <td>
-                Professor first name
+                Student first name
             </td>
             <td>
-                Professor last name
+                Student last name
             </td>
             <td>Action</td>
         </tr>
         </thead>
-        <tbody th:each="p : ${professors}">
+        <tbody th:each="s : ${students}">
 
         <tr>
-            <td th:text="${p.professorId}"></td>
-            <td th:text="${p.firstName}"></td>
-            <td th:text="${p.lastName}"></td>
+            <td th:text="${s.studentId}"></td>
+            <td th:text="${s.firstName}"></td>
+            <td th:text="${s.lastName}"></td>
             <td>
-                <a th:href="@{/editprofessor/{id}(id = ${p.professorId})}">
+                <a th:href="@{/editstudent/{id}(id = ${s.studentId})}">
                     <i class="small material-icons">create</i>
                 </a>
-                <a th:href="@{/deleteprofessor/{id}(id = ${p.professorId})}">
+                <a th:href="@{/deletestudent/{id}(id = ${s.studentId})}">
                     <i class="small material-icons">delete</i>
                 </a>
             </td>
@@ -58,3 +58,4 @@
 </div>
 </body>
 </html>
+
