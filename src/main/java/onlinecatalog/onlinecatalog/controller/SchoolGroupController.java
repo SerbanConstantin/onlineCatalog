@@ -29,6 +29,7 @@ public class SchoolGroupController {
         return "schoolgroup/showallschoolgroups";
 
     }
+
     @GetMapping("/addschoolgroup")
     public String addSchoolGroup(Model model) {
         model.addAttribute("schoolgroup", new SchoolGroup());// initial bind with the form, to say to the webpage
@@ -44,6 +45,7 @@ public class SchoolGroupController {
         return "redirect:/allschoolgroups";
 
     }
+
     @GetMapping("/group/{id}/students")
     public String viewStudentsInGroup(Model model, @PathVariable Integer id) {
         model.addAttribute("students", schoolGroupService.findStudentsByGroup(id));
