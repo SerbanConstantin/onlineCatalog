@@ -10,10 +10,9 @@ import java.util.Collection;
 @AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
-
     private User user;
 
-    //commented out because lombok. Constructor used to pass user to this class
+    //commented out because of lombok. Constructor used to pass user to this class
 //    public CustomUserDetails(User user) {
 //        this.user = user;
 //    }
