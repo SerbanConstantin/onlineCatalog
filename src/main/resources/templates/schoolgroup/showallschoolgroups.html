@@ -37,9 +37,8 @@
             <td>Action</td>
         </tr>
         </thead>
-        <tbody th:each="sc : ${schoolgroups}">
-
-        <tr>
+        <tbody>
+        <tr th:each="sc : ${schoolgroups}">
             <td th:text="${sc.groupId}"></td>
             <td th:text="${sc.groupName}"></td>
             <td th:text="${sc.groupYear}"></td>
