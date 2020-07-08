@@ -58,7 +58,7 @@ public class SendGridEmailService {
         }
         return response;
     }
-
+     //send to several recipients
     private Response sendEmail(String from, String[] to, String subject, Content content) {
         Mail mail = new Mail();
         mail.setFrom(new Email(from));

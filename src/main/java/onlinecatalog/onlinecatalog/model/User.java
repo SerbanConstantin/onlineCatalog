@@ -29,4 +29,6 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     private Role role;
 
+    @OneToOne(mappedBy = "user")
+    private PendingUser pendingUser;
 }

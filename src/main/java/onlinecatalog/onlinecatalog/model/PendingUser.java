@@ -22,7 +22,4 @@ public class PendingUser {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToOne(mappedBy = "user")
-    private PendingUser pendingUser;
-
 }
