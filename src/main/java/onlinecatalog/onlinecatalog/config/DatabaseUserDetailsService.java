@@ -21,6 +21,8 @@ import java.util.Optional;
 public class DatabaseUserDetailsService implements UserDetailsService {
 
     private UserRepository userRepository;
+
+    @Autowired
     private PendingUserRepository pendingUserRepository;
 
     @Autowired
