@@ -58,6 +58,7 @@ public class RegisterController {
                 user.getEmailAddress(), "Please confirm account",
                 randomStringGenerator.linkCreator(activationCode, "https://online-school-catalog-sc.herokuapp.com/"));
         pendingUser.setUser(user);
+        pendingUserRepository.save(pendingUser);
 
         return "redirect:/login";
 
