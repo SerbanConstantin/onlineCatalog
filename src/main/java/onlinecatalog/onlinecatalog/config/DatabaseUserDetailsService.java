@@ -1,6 +1,7 @@
 package onlinecatalog.onlinecatalog.config;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import onlinecatalog.onlinecatalog.config.CustomUserDetails;
 import onlinecatalog.onlinecatalog.model.PendingUser;
 import onlinecatalog.onlinecatalog.model.User;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 @Component
 @Getter
+@Slf4j
 public class DatabaseUserDetailsService implements UserDetailsService {
 
     private UserRepository userRepository;
@@ -28,8 +30,15 @@ public class DatabaseUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("Username " + username);
+        Optional<PendingUser> optional = pendingUserRepository.findByUsername(username);
+
+        if (optional.isPresent()) {
+            log.info(optional.get().getActivationCode());
+            throw new UsernameNotFoundException(username);
+        }
         User user = userRepository.findByUsername(username)
-                .orElseThrow(()-> new UsernameNotFoundException(username));
+                .orElseThrow(() -> new UsernameNotFoundException(username));
         return new CustomUserDetails(user);
     }
 }
