@@ -1,7 +1,10 @@
 package onlinecatalog.onlinecatalog.controller;
 
+import onlinecatalog.onlinecatalog.model.PendingUser;
 import onlinecatalog.onlinecatalog.model.User;
+import onlinecatalog.onlinecatalog.repository.PendingUserRepository;
 import onlinecatalog.onlinecatalog.repository.UserRepository;
+import onlinecatalog.onlinecatalog.service.RandomStringGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,6 +20,12 @@ public class RegisterController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PendingUserRepository pendingUserRepository;
+
+    @Autowired
+    private RandomStringGenerator randomStringGenerator;
 
     @GetMapping("/register")
     public String registerUser() {
@@ -36,8 +45,13 @@ public class RegisterController {
         user.setUsername(username);
 
         userRepository.save(user);
+        PendingUser pendingUser = new PendingUser();
+        String activationCode = randomStringGenerator.getAlphaNumericString(20);
+        pendingUser.setActivationCode(activationCode);
 
-        return "return:/login";
+        pendingUser.setUser(user);
+
+        return "redirect:/login";
 
 
     }

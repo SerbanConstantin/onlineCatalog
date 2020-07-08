@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table
 @Data
 @NoArgsConstructor
 public class Role {
