@@ -29,7 +29,7 @@ public class OnlinecatalogApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         try {
-            userRepository.deleteById(3);
+            userRepository.deleteById(2);
         } catch (Exception ex) {
 
         }
