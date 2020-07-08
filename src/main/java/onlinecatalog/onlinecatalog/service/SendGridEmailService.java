@@ -16,9 +16,11 @@ import java.io.IOException;
 
 @Service
 @Slf4j
-public class SendGridEmailService  {
+public class SendGridEmailService {
+
     @Autowired
     private SendGrid sendGridClient;
+
     @Autowired
     public SendGridEmailService(SendGrid sendGridClient) {
         this.sendGridClient = sendGridClient;
@@ -35,11 +37,13 @@ public class SendGridEmailService  {
         log.info("Status Code: " + response.getStatusCode() + ", Body: " + response.getBody() + ", Headers: "
                 + response.getHeaders());
     }
+
     public void sendHTML(String from, String[] to, String subject, String body) {
         Response response = sendEmail(from, to, subject, new Content("text/html", body));
         log.info("Status Code: " + response.getStatusCode() + ", Body: " + response.getBody() + ", Headers: "
                 + response.getHeaders());
     }
+
     private Response sendEmail(String from, String to, String subject, Content content) {
         Mail mail = new Mail(new Email(from), subject, new Email(to), content);
         Request request = new Request();
@@ -54,6 +58,7 @@ public class SendGridEmailService  {
         }
         return response;
     }
+
     private Response sendEmail(String from, String[] to, String subject, Content content) {
         Mail mail = new Mail();
         mail.setFrom(new Email(from));
